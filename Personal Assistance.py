@@ -76,13 +76,14 @@ if __name__ == '__main__':
     wishMe()
     while(True):
         querry=takeCommand().lower() # taking speech to text in lower case
-        if querry=="none":
-            continue;
-
+        
         #logic for executing task based on querry
+        
+        if "none" in querry:
+            speak("my bad! i am not able to hear you sir,  please say louder for me")
 
-        if "hello how are you" in querry:
-            speak("Sir i am fine!   Happy to meet with you again")
+        elif "hello how are you" in querry:
+            speak("Sir i am fine!   Great to hear from you")
             
         elif "wikipedia" in querry:
             speak("Searching Wikipedia")
