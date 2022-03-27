@@ -5,7 +5,7 @@ import wikipedia # use wikipedia
 import webbrowser  # use web browser
 import os  # for music player
 import random  # use random.randint function
-import smtplib  # send email using port 587
+import smtplib  # send email 
 
 f1=open('email_1.txt','r')  #opening sender email from file
 sender_email=f1.readline()  # reading file
@@ -19,7 +19,6 @@ password=f3.readline()  # reading the file
 
 engine=pyttsx3.init('sapi5')  # starting the engine of text-speech conversion
 voice=engine.getProperty('voices')  # getting property of voice from engine
-#print(voice[1].id)
 voice=engine.setProperty('voices',voice[0].id)  #setting property to male or female
 
 def speak(audio):
@@ -74,16 +73,17 @@ def sendEmail(to,body): # simple mail transfer protocal
 
 
 if __name__ == '__main__':
-    #speak("Mr. Y Nokom Konyak is a great guy from Namthai Village MON Nagaland")
-    #speak("Subhendu sekhar Bag Subhendu sekhar Bag is a chutia chutia")
     wishMe()
     while(True):
         querry=takeCommand().lower() # taking speech to text in lower case
+        if querry=="none":
+            continue;
 
         #logic for executing task based on querry
 
         if "hello how are you" in querry:
             speak("Sir i am fine!   Happy to meet with you again")
+            
         elif "wikipedia" in querry:
             speak("Searching Wikipedia")
             querry=querry.replace("wikipedia","")
@@ -109,7 +109,7 @@ if __name__ == '__main__':
             music_dir='F:\\My Music\\New folder'  # specifing the location
             songs=os.listdir(music_dir)  # making list of contents in location
             print(songs)
-            n=random.randint(0,6) #generating random number
+            n=random.randint(0,6) #generating random integer number
             os.startfile(os.path.join(music_dir,songs[n]))  # startfile method start the process
 
             #patn.join here joins path and song means pointing to the songs[n] location
@@ -124,17 +124,12 @@ if __name__ == '__main__':
             speak(f"Sir the date is {strdate}")
             print(strdate)
 
-        elif "the death" in querry:
-            strdate=datetime.datetime.now().strftime("%d:%m:%Y")
-            speak(f"Sir the date is {strdate}")
-            print(strdate)
-
         elif "the note" in querry:
             speak("Opening notebook")
             path="C:\\Program Files (x86)\\Notepad++\\notepad++.exe"
             os.startfile(path)
 
-        elif "email to boss" in querry:
+        elif "email to abc" in querry:
             try:
                 speak("What should i write?")
                 body=takeCommand()
@@ -143,7 +138,7 @@ if __name__ == '__main__':
 
             except Exception as e:  # runs if error occurs anywhere before ending
                 print(e)
-                speak("Sorry Nokom (my boss) I am not able to sent mail")
+                speak("Sorry boss! I am not able to sent mail")
 
         elif "bye bye" in querry:
             speak("Ok sir! Thank You for using me")
