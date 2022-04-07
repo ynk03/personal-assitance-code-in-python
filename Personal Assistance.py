@@ -57,7 +57,7 @@ def takeCommand():
     return query
 
 def sendEmail(to,body): # simple mail transfer protocal
-    speak("Sending mail to boss")
+    speak("Sending mail to abc")
     server=smtplib.SMTP('smtp.gmail.com',587) #creating unsecure connection
     server.ehlo()
     server.starttls() #converting it to secure connection
@@ -139,7 +139,7 @@ if __name__ == '__main__':
 
             except Exception as e:  # runs if error occurs anywhere before ending
                 print(e)
-                speak("Sorry boss! I am not able to sent mail")
+                speak("Sorry! I am not able to sent mail")
 
         elif "bye bye" in querry:
             speak("Ok sir! Thank You for using me")
